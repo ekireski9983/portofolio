@@ -21,15 +21,12 @@ export default async function handler(req:NextApiRequest, res:NextApiResponse) {
                 if( body.subTitle == ""){
                     throw new Error('subTitle is required')
                 }
-                if( body.categoryblogs == ""){
-                    throw new Error('categoryblogs is required')
-                }
 
                 if( body.content == ""){
                     throw new Error('content is required')
                 }
 
-                let blogs = await db.collection("blogs").insertOne(body);
+                let blogs = await db.collection("listblogs").insertOne(body);
                 res.status(200).json({ data: blogs, message:'data berhasil di simpan' });
 
             }catch(err){
@@ -37,7 +34,7 @@ export default async function handler(req:NextApiRequest, res:NextApiResponse) {
             }
             break;
         default:
-            const blogsData = await db.collection("blogs").find({}).toArray();
+            const blogsData = await db.collection("listblogs").find({}).toArray();
             res.json({ data: blogsData });
         break;
     }
