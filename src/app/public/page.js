@@ -9,7 +9,7 @@ export default function Home() {
         <button className="mb-4 px-4 py-2 text-white bg-indigo-500 rounded-full hover:bg-indigo-800">  Hire me</button>      
         </div>
       <img 
-        src="/images/hilyaaaa.jpeg" 
+        src="/images/IMG_20230725_085929.jpg" 
         alt="Hilya Aulia" 
         className="w-40 h-50 object-cover ml-4"
       />
