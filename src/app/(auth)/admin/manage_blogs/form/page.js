@@ -5,32 +5,34 @@ import { useState } from 'react'
 import { useRef } from 'react';
 import { Editor } from '@tinymce/tinymce-react';
 
-export default function AdminBlogsForm() {
+export default function ManageBlogsForm() {
     const editorRef = useRef(null);
     const [modal, setModal] = useState(false)
     const [modalTitle, setModalTitle] = useState("")
     const [modalMessage, setModalMessage] = useState("")
     const [data, setData] = useState({
-        title:'',
-        subTitle:'',
+        blogstitle:'',
+        blogssummary:'',
+        blogscategory:'',
         content:'',
-        kategori:'',
     });
 
     const clearData = ()=>{
         setData({
             title:'',
-            subTitle:'',
+            blogssummary:'',
+            category:'',
             content:'',
-            kategori:'',
         })
     }
-    const kategori = [
-        {label:'React Js', value:'React Js'},
-        {label:'React Native', value:'React Native'},
-        {label:'Vlue.js', value:'Vlue.js'},
-        {label:'Web Pemograman', value:'Web Pemograman'},
+
+    const optblogscategory = [
+        {label:'reactjs', value:'reactjs'},
+        {label:'php-programming', value:'php-programming'},
+        {label:'VueJS', value:'VueJS'},
+        {label:'ReactNative', value:'ReactNative'}
       ]
+
     const inputHandler= (e) =>{
         setData({...data, [e.target.name]: e.target.value })
     }
@@ -48,7 +50,7 @@ export default function AdminBlogsForm() {
                 const body = data
                 body.content = editorRef.current.getContent();
 
-                let res = await fetch('/api/blogs', {
+                let res = await fetch('/api/list_blogs', {
                     method:'POST',
                     body: JSON.stringify(body),
                 })
@@ -74,43 +76,44 @@ export default function AdminBlogsForm() {
 
         <Card title="Blogs Form">
             <div className="w-full my-2">
-                <label>Title</label>
+                <label>blogs Title</label>
                     <input 
-                        name='title'
-                        value={data.title}
+                        name='blogstitle'
+                        value={data.blogstitle}
                         onChange={inputHandler}
                         type="text" 
                         className="w-full border my-input-text"/>
             </div>
 
             <div className="w-full my-2">
-                <label>Sub Title</label>
+                <label>summary blogs</label>
                     <input 
-                        name='subTitle'
-                        value={data.subTitle}
+                        name='blogssummary'
+                        value={data.blogssummary}
                         onChange={inputHandler}
                         className="w-full border my-input-text"/>
             </div>
-            <div className="w-full my-2">
-            <label>kategori</label>
-            <select  
-            name='kategori' 
-            value={data.kategori}  // Tambahkan value untuk menampilkan data yang dipilih
-            onChange={inputHandler}
-            className="w-full border my-input-text">
-            {
-            kategori.map((item, key) => 
-            <option key={key} value={item.value}>{item.label}</option>
-            )
-            }
-</select>
 
+            <div className="w-full my-2">
+            <label>blogs category</label>
+            <select  
+              name='blogscategory' 
+              onChange={inputHandler}
+              className="w-full border my-input-text">
+              {
+                optblogscategory && 
+                  optblogscategory.map((item, key)=>
+                    <option key={key} value={item.value}>{item.label}</option>
+                  )
+              }
+            </select>
         </div>
+
             <div className="w-full my-2">
                 <label>Content</label>
                 <Editor
                     id='content'
-                    apiKey='9cwimxs87anry0u2avnf1wswmlg849552261vhxbl2qb8qkw'
+                    apiKey='zsi50x7ymctngli7btlhb6o85wqsdshppgng8g4pt1q8kn25'
                     onInit={(_evt, editor) => editorRef.current = editor}
                     initialValue={data.content}
                     init={{
