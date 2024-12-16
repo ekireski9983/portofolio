@@ -27,7 +27,6 @@ export default function AdminBlogsForm() {
     }
     const kategori = [
         {label:'React Js', value:'React Js'},
-        {label:'React Js', value:'React Js'},
         {label:'React Native', value:'React Native'},
         {label:'Vlue.js', value:'Vlue.js'},
         {label:'Web Pemograman', value:'Web Pemograman'},
