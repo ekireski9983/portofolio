@@ -12,7 +12,7 @@ let client
 let clientPromise
 
 if (!process.env.MONGODB_URI) {
-  throw new Error('Add Mongo URI to .env.local')
+  throw new Error('Add Mongo URI to .env')
 }
 
 if (process.env.NODE_ENV === 'development') {
