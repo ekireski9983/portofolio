@@ -27,7 +27,6 @@ export default function AdminBlogsForm() {
     }
     const kategori = [
         {label:'React Js', value:'React Js'},
-        {label:'React Js', value:'React Js'},
         {label:'React Native', value:'React Native'},
         {label:'Vlue.js', value:'Vlue.js'},
         {label:'Web Pemograman', value:'Web Pemograman'},
@@ -45,9 +44,9 @@ export default function AdminBlogsForm() {
 
     async function onSubmitData() {
         try{
-            // if (editorRef.current) {
+            if (editorRef.current) {
                 const body = data
-                // body.content = editorRef.current.getContent();
+                body.content = editorRef.current.getContent();
 
                 let res = await fetch('/api/blogs', {
                     method:'POST',
@@ -58,11 +57,10 @@ export default function AdminBlogsForm() {
                 if(!resData.data){
                 throw Error(resData.message)
                 }
-                
                 setModal(true)
                 setModalTitle('Info')
                 setModalMessage(resData.message)
-            // }
+            }
         }catch(err){
           console.error("ERR", err.message)
           setModal(true)
@@ -110,14 +108,7 @@ export default function AdminBlogsForm() {
         </div>
             <div className="w-full my-2">
                 <label>Content</label>
-                <textarea
-                  name="content"
-                  className="border-b-2 border-gray-300 focus:outline-none focus:border-blue-500 w-full"
-                  value={data.content}
-                  onChange={inputHandler}
-                  placeholder="Enter blog content"
-                />
-                {/* <Editor
+                <Editor
                     id='content'
                     apiKey='9cwimxs87anry0u2avnf1wswmlg849552261vhxbl2qb8qkw'
                     onInit={(_evt, editor) => editorRef.current = editor}
@@ -136,7 +127,7 @@ export default function AdminBlogsForm() {
                         'removeformat | help',
                     content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
                     }}
-                /> */}
+                />
             </div>
 
             <button  className="btn-primary" onClick={onSubmitData}>
