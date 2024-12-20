@@ -8,7 +8,7 @@ const CardItem = ({ title, subTitle }) => {
       <div className="flex justify-center">
         <img
           className="h-[300px]"
-          src="/image/coding.png"
+          src="/image/no-image-icon.jpg"
           alt="No Image"
         />
       </div>
@@ -74,20 +74,14 @@ export default function Blogs() {
   const handleSearchSubmit = (e) => {
     e.preventDefault();
     const results = data.filter((item) =>
-      item.kategori.toLowerCase().includes(searchTerm.toLowerCase())
+      item.title.toLowerCase().includes(searchTerm.toLowerCase())
     );
     setFilteredData(results);
   };
 
   return (
     <>
-      <h2 className="text-center text-[32px] font-bold w-full">Blog</h2>
-
-      <p className="text-center margin-0 mx-auto w-2/3">
-        Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.
-        Velit officia consequat duis enim velit mollit. lorem ipsum
-      </p>
-      <h1 className="text-2xl text-center font-bold mb-4">Search Filter Example</h1>
+      <h1 className="text-2xl font-bold mb-4 text-center">Search Filter</h1>
       <div className="flex justify-center" >
 
       <form

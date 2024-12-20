@@ -74,9 +74,9 @@ export default function Blogsbyid() {
 
     async function onSubmitData() {
         try {
-            // if (editorRef.current) {
+            if (editorRef.current) {
                 const body = datakomen;
-                // body.komentar = editorRef.current.getContent();
+                body.komentar = editorRef.current.getContent();
 
                 let res = await fetch("/api/komentar", {
                     method: "POST",
@@ -91,7 +91,7 @@ export default function Blogsbyid() {
                 setModalTitle("Info");
                 setModalMessage(resData.message);
                 onFetchKomentar();
-            // }
+            }
         } catch (err) {
             console.error("ERR", err.message);
             setModal(true);
@@ -171,16 +171,9 @@ export default function Blogsbyid() {
                 </div>
                 <div className="w-full my-2">
                     <label>Komentar</label>
-                       <textarea
-                  name="komentar"
-                  className="border-b-2 border-gray-300 focus:outline-none focus:border-blue-500 w-full"
-                  value={data.komentar}
-                  onChange={inputHandler}
-                  placeholder="Enter blog content"
-                />
-                    {/* <Editor
+                    <Editor
                         id="komentar"
-                        apiKey="9cwimxs87anry0u2avnf1wswmlg849552261vhxbl2qb8qkw"
+                        apiKey="zsi50x7ymctngli7btlhb6o85wqsdshppgng8g4pt1q8kn25"
                         onInit={(_evt, editor) => (editorRef.current = editor)}
                         initialValue={datakomen.komentar}
                         init={{
@@ -210,7 +203,7 @@ export default function Blogsbyid() {
                                 "undo redo | blocks | bold italic forecolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help",
                             content_style: "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
                         }}
-                    /> */}
+                    />
                 </div>
                 <button className="btn-primary" onClick={onSubmitData}>
                     <span className="relative text-sm font-semibold text-white">Kirim</span>
